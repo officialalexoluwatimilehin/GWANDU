@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Deposit Funds</title>
+
+<link rel="stylesheet" href="css/deposit.css">
+
+</head>
+
+<body>
+    
+<div class="deposit-container">
+
+    <h1>Deposit Funds</h1>
+
+    <p>Select your preferred network and send payment to the wallet below.</p>
+
+    <label>Investment Amount</label>
+<label>Select Investment Plan</label>
+
+<select id="amount">
+
+    <option value="3000">$3,000</option>
+    <option value="5000">$5,000</option>
+    <option value="10000">$10,000</option>
+    <option value="25000">$25,000</option>
+    <option value="50000">$50,000</option>
+    <option value="100000">$100,000</option>
+    <option value="500000">$500,000</option>
+    <option value="2000000">$2,000,000</option>
+
+</select>
+
+    <label>Select Network</label>
+
+    <select id="network">
+
+        <option value="ERC20">USDT (ERC20)</option>
+
+        <option value="BEP20">USDT (BEP20)</option>
+
+        <option value="TRC20">USDT (TRC20)</option>
+
+        <option value="BTC">Bitcoin</option>
+
+        <option value="SOL">Solana</option>
+
+        <option value="TON">TON</option>
+
+        <option value="ARBITRUM">Arbitrum</option>
+
+    </select>
+
+    <label>Wallet Address</label>
+
+    <input
+        id="wallet"
+        readonly
+    >
+
+    <button id="copyWallet">
+        Copy Wallet Address
+    </button>
+
+    <br><br>
+
+    <label>Transaction Hash</label>
+
+    <input
+        id="txHash"
+        placeholder="Paste transaction hash"
+    >
+
+    <button id="verifyBtn">
+        Verify Deposit
+    </button>
+
+    <br><br>
+
+    <p id="message"></p>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/deposit.js"></script>
+
+</body>
+
+</html>

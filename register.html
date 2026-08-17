@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GWANDU | Create Account</title>
+
+    <link rel="stylesheet" href="css/register.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <!-- LEFT SIDE -->
+        <div class="left-side">
+
+            <a href="index.html" class="logo">
+                <span>↗</span> GWANDU
+            </a>
+
+            <div class="left-content">
+
+                <span class="badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Secure Registration
+                </span>
+
+                <h1>
+                    Start Your
+                    <span>Journey.</span>
+                </h1>
+
+                <p>
+                    Create your GWANDU account and access your
+                    personal investment dashboard.
+                </p>
+
+                <div class="benefits">
+
+                    <div class="benefit">
+                        <div class="benefit-icon">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+
+                        <div>
+                            <h3>Secure Account</h3>
+                            <p>Your account information is protected.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit">
+                        <div class="benefit-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div>
+                            <h3>Personal Dashboard</h3>
+                            <p>Monitor your account activity in one place.</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit">
+                        <div class="benefit-icon">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+
+                        <div>
+                            <h3>Customer Support</h3>
+                            <p>Get assistance whenever you need it.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                © 2026 GWANDU. All rights reserved.
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="right-side">
+
+            <div class="register-box">
+
+                <div class="register-header">
+
+                    <h2>Create Account</h2>
+
+                    <p>
+                        Enter your details to create your account.
+                    </p>
+
+                </div>
+
+
+                <div id="message" style="margin-bottom:15px;"></div>
+
+                <form id="registerForm">
+
+                    <input
+                        type="hidden"
+                        id="referralCode"
+                        name="referralCode"
+                        value=""
+                    >
+
+                    <!-- FULL NAME -->
+                    <div class="input-group">
+
+                        <label for="fullname">
+                            Full Name
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-regular fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="fullname"
+                                name="fullname"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+                    <div class="input-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+                    <div class="input-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter your phone number"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+                    <div class="input-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword('password', this)"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+                    <div class="input-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <div class="input-box">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Confirm your password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword('confirmPassword', this)"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+                    <div class="terms">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                required
+                            >
+
+                            <span>
+                                I agree to the
+                                <a href="#">Terms of Service</a>
+                                and
+                                <a href="#">Privacy Policy</a>.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- SUBMIT -->
+                    <button type="submit" class="register-btn">
+
+                        Create Account
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+
+                <div class="divider">
+                    <span>Already have an account?</span>
+                </div>
+
+
+                <a href="login.html" class="login-link">
+                    Member Login
+                </a>
+
+
+                <a href="index.html" class="back-home">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function togglePassword(inputId, button) {
+
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector("i");
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+
+            } else {
+
+                input.type = "password";
+
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+
+            }
+
+        }
+
+
+
+
+    </script>
+
+
+
+    <script src="js/config.js"></script>
+    <script src="js/register.js"></script>
+
+</body>
+
+</html>

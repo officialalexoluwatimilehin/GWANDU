@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Settings</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>GWANDU</h2>
+            <span>ADMIN PANEL</span>
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html">🏠 Dashboard</a>
+
+            <a href="admin-users.html">👤 Users</a>
+
+            <a href="admin-deposits.html">💰 Deposits</a>
+
+            <a href="admin-withdrawals.html">💸 Withdrawals</a>
+
+            <a href="settings.html" class="active">⚙ Settings</a>
+
+            <a href="../login.html">🚪 Logout</a>
+
+        </nav>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>Platform Settings</h1>
+
+                <p>Dashboard / Settings</p>
+
+            </div>
+
+            <div class="admin">
+
+                👤 Administrator
+
+            </div>
+
+        </div>
+
+        <!-- INFORMATION -->
+
+        <div class="info-box">
+
+            <div class="icon">
+
+                ⚙
+
+            </div>
+
+            <div>
+
+                <h3>Platform Configuration</h3>
+
+                <p>
+                    Update your website information, wallets and payment details here.
+                </p>
+
+            </div>
+
+        </div>
+
+        <form id="settingsForm">
+
+            <!-- GENERAL SETTINGS -->
+
+            <div class="card">
+
+                <h2>General Settings</h2>
+
+                <div class="grid">
+
+                    <div class="input-group">
+                        <label>Company Name</label>
+                        <input type="text" id="companyName">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Hero Title</label>
+                        <input type="text" id="heroTitle">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Hero Subtitle</label>
+                        <input type="text" id="heroSubtitle">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Support Email</label>
+                        <input type="email" id="supportEmail">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Support Phone</label>
+                        <input type="text" id="supportPhone">
+                    </div>
+
+                    <div class="input-group">
+                        <label>WhatsApp Number</label>
+                        <input type="text" id="whatsapp">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- WALLETS -->
+
+            <div class="card">
+
+                <h2>Crypto Wallets</h2>
+
+                <div class="grid">
+
+                    <div class="input-group">
+                        <label>Bitcoin Wallet</label>
+                        <input id="btcWallet">
+                    </div>
+
+                    <div class="input-group">
+                        <label>USDT TRC20 Wallet</label>
+                        <input id="trcWallet">
+                    </div>
+
+                    <div class="input-group">
+                        <label>USDT BEP20 Wallet</label>
+                        <input id="bepWallet">
+                    </div>
+
+                    <div class="input-group">
+                        <label>USDT ERC20 Wallet</label>
+                        <input id="ercWallet">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Solana Wallet</label>
+                        <input id="solWallet">
+                    </div>
+
+                    <div class="input-group">
+                        <label>TON Wallet</label>
+                        <input id="tonWallet">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BANK -->
+
+            <div class="card">
+
+                <h2>Bank Transfer (USD)</h2>
+
+                <div class="grid">
+
+                    <div class="input-group">
+                        <label>Bank Name</label>
+                        <input id="bankName">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Account Name</label>
+                        <input id="accountName">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Account Number</label>
+                        <input id="accountNumber">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SAVE -->
+
+            <div class="save-area">
+
+                <button class="save-btn" type="submit">
+
+                    💾 Save Changes
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+</div>
+
+<script src="js/settings.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>GWANDU Dashboard</title>
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<header>
+
+<div class="dashboard-logo">
+
+    <img src="images/navbar-logo.png" alt="GWANDU">
+
+    <span>Dashboard</span>
+
+</div>
+<button id="logoutBtn">
+
+Logout
+
+</button>
+
+</header>
+
+<h2>
+Welcome,
+<span id="userName">Loading...</span>
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Balance</h3>
+<h2 id="balance">$0</h2>
+</div>
+
+<div class="card">
+<h3>Registration Bonus</h3>
+<h2 id="bonus">$0</h2>
+</div>
+
+<div class="card">
+<h3>Active Investment</h3>
+<h2 id="investment">$0</h2>
+</div>
+
+<div class="card">
+<h3>Daily Earnings</h3>
+<h2 id="earnings">$0</h2>
+</div>
+
+<div class="card">
+    <h3>Total Earned</h3>
+    <h2 id="totalEarned">$0</h2>
+</div>
+
+<div class="card">
+    <h3>Referral Earnings</h3>
+    <h2 id="referralBalance">$0</h2>
+</div>
+
+<div class="card referral-card">
+
+    <h3>Your Referral Code</h3>
+
+    <h2 id="referralCode">Loading...</h2>
+
+    <button id="copyReferral">
+        <i class="fa-solid fa-copy"></i>
+        Copy Referral Link
+    </button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     INVESTMENT PROGRESS
+========================= -->
+
+<section class="investment-progress">
+
+    <div class="section-heading">
+        <div>
+            <span class="section-label">PORTFOLIO</span>
+            <h2>Investment Progress</h2>
+        </div>
+
+        <span class="progress-status">
+            <i class="fa-solid fa-chart-line"></i>
+            Active Tracking
+        </span>
+    </div>
+
+    <div class="progressBox">
+
+        <div class="progress-info">
+
+            <div>
+                <span>Investment Completion</span>
+                <strong id="progressText">0% Completed</strong>
+            </div>
+
+            <div>
+                <span id="daysRemaining">No active investment</span>
+            </div>
+
+        </div>
+
+        <div class="progressBar">
+
+            <div id="progressFill"></div>
+
+        </div>
+
+    </div>
+
+</section>
+<div class="actions">
+
+    <button id="depositBtn">
+        💰 Deposit
+    </button>
+
+    <button id="activateBtn">
+        🚀 Activate Investment
+    </button>
+
+    <button id="withdrawBtn">
+        💸 Withdraw
+    </button>
+
+    <button id="historyBtn">
+
+Withdrawal History
+
+</button>
+
+<button id="depositHistoryBtn">
+
+Deposit History
+
+</button>
+
+    <button id="plansBtn">
+        📈 Investment Plans
+    </button>
+
+    <button id="referralBtn">
+        👥 Referral
+    </button>
+
+</div>
+</div>
+
+
+<h2>Recent Transactions</h2>
+
+<table class="transaction-table">
+
+<thead>
+
+<tr>
+
+<th>Type</th>
+
+<th>Amount</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody id="transactionTable">
+
+</tbody>
+
+</table>
+
+</div>
+<script src="js/config.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

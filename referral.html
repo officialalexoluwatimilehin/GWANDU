@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GWANDU – Referral</title>
+
+    <link rel="stylesheet" href="css/referral.css">
+    <script src="js/config.js"></script>
+    <script src="js/auth-guard.js"></script>
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="brand">📈 GWANDU</div>
+
+        <button onclick="window.location.href='dashboard.html'">
+            ← Dashboard
+        </button>
+    </header>
+
+    <main class="container">
+
+        <h1>Referral Program</h1>
+
+        <p class="subtitle">
+            Share your referral link and track your referral activity.
+        </p>
+
+
+        <section class="cards">
+
+            <div class="card">
+                <span>Referral Balance</span>
+                <strong id="referralBalance">$0</strong>
+            </div>
+
+            <div class="card">
+                <span>Total Referrals</span>
+                <strong id="referralCount">0</strong>
+            </div>
+
+        </section>
+
+        <section class="referral-box">
+
+            <h2>Your Referral Code</h2>
+
+            <div class="code" id="referralCode">
+                Loading...
+            </div>
+
+            <button id="copyReferral">
+                📋 Copy Referral Link
+            </button>
+
+            <p id="copyMessage"></p>
+
+        </section>
+
+        <section class="referrals-list">
+
+            <h2>Your Referrals</h2>
+
+            <div id="referralsContainer">
+                <p class="empty">
+                    No referrals yet.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/referral.js"></script>
+
+</body>
+</html>

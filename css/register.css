@@ -1,0 +1,498 @@
+/* =========================================================
+   GWANDU — PREMIUM REGISTRATION UI
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.18), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(251, 191, 36, 0.08), transparent 30%),
+        #071120;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 20px;
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.register-container {
+    width: 1100px;
+    max-width: 100%;
+    min-height: 700px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: rgba(12, 27, 51, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 26px;
+    overflow: hidden;
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        0 0 80px rgba(37, 99, 235, 0.08);
+    backdrop-filter: blur(20px);
+}
+
+/* =========================================================
+   LEFT SIDE
+   ========================================================= */
+
+.left-side {
+    position: relative;
+    padding: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(37, 99, 235, 0.16),
+            rgba(7, 17, 32, 0.96)
+        );
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+}
+
+.left-side::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: -130px;
+    left: -130px;
+    background: rgba(37, 99, 235, 0.18);
+    border-radius: 50%;
+    filter: blur(70px);
+}
+
+.left-side::after {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    right: -100px;
+    bottom: -100px;
+    background: rgba(251, 191, 36, 0.08);
+    border-radius: 50%;
+    filter: blur(60px);
+}
+
+.logo {
+    position: relative;
+    z-index: 2;
+    width: fit-content;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+.logo span {
+    color: #fbbf24;
+    margin-right: 6px;
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+}
+
+.left-content {
+    position: relative;
+    z-index: 2;
+    margin-top: 30px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 15px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-radius: 50px;
+    background: rgba(251, 191, 36, 0.08);
+    color: #fbbf24;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.left-content h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 22px;
+}
+
+.left-content h1 span {
+    color: #fbbf24;
+}
+
+.left-content > p {
+    max-width: 470px;
+    color: #94a3b8;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 38px;
+}
+
+/* =========================================================
+   BENEFITS
+   ========================================================= */
+
+.benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.benefit-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(37, 99, 235, 0.18);
+    border: 1px solid rgba(37, 99, 235, 0.3);
+    border-radius: 13px;
+    color: #60a5fa;
+    font-size: 18px;
+}
+
+.benefit h3 {
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.benefit p {
+    color: #7f91aa;
+    font-size: 12px;
+}
+
+.copyright {
+    position: relative;
+    z-index: 2;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.right-side {
+    padding: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 22, 38, 0.72);
+}
+
+.register-box {
+    width: 100%;
+    max-width: 440px;
+}
+
+.register-header {
+    margin-bottom: 30px;
+}
+
+.register-header h2 {
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.register-header p {
+    color: #8fa3bf;
+    font-size: 14px;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.input-group {
+    margin-bottom: 19px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #dbe5f2;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.input-box {
+    position: relative;
+}
+
+.input-box > i:first-child {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    color: #64748b;
+    font-size: 15px;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+.input-box input {
+    width: 100%;
+    height: 52px;
+    padding: 0 48px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    outline: none;
+    background: #0c1b33;
+    color: #ffffff;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.input-box input::placeholder {
+    color: #53657d;
+}
+
+.input-box input:focus {
+    border-color: #2563eb;
+    background: #0e203b;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+}
+
+.input-box:focus-within > i:first-child {
+    color: #60a5fa;
+}
+
+/* =========================================================
+   PASSWORD TOGGLE
+   ========================================================= */
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 6px;
+    transition: 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: #fbbf24;
+}
+
+/* =========================================================
+   TERMS
+   ========================================================= */
+
+.terms {
+    margin: 8px 0 22px;
+}
+
+.terms label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    color: #7f91aa;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.terms input {
+    margin-top: 3px;
+    accent-color: #2563eb;
+}
+
+.terms a {
+    color: #60a5fa;
+    transition: 0.3s ease;
+}
+
+.terms a:hover {
+    color: #fbbf24;
+}
+
+/* =========================================================
+   REGISTER BUTTON
+   ========================================================= */
+
+.register-btn {
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.25);
+    transition: 0.35s ease;
+}
+
+.register-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.38);
+}
+
+.register-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   LOGIN / BACK LINKS
+   ========================================================= */
+
+.divider {
+    position: relative;
+    margin: 27px 0 20px;
+    text-align: center;
+}
+
+.divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.divider span {
+    position: relative;
+    z-index: 1;
+    padding: 0 12px;
+    background: #0b192e;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.login-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    border: 1px solid rgba(251, 191, 36, 0.35);
+    border-radius: 12px;
+    color: #fbbf24;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.login-link:hover {
+    background: rgba(251, 191, 36, 0.08);
+    border-color: #fbbf24;
+    transform: translateY(-2px);
+}
+
+.back-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 18px;
+    color: #64748b;
+    font-size: 12px;
+    transition: 0.3s ease;
+}
+
+.back-home:hover {
+    color: #ffffff;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .register-container {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+
+    .left-side {
+        padding: 40px;
+        min-height: auto;
+    }
+
+    .left-content h1 {
+        font-size: 42px;
+    }
+
+    .copyright {
+        margin-top: 35px;
+    }
+
+    .right-side {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .register-container {
+        border-radius: 18px;
+    }
+
+    .left-side,
+    .right-side {
+        padding: 28px 22px;
+    }
+
+    .left-content h1 {
+        font-size: 36px;
+    }
+
+    .register-header h2 {
+        font-size: 28px;
+    }
+
+    .benefit {
+        align-items: flex-start;
+    }
+}

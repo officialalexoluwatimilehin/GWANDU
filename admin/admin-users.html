@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Users</title>
+
+<link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<h1>Registered Users</h1>
+
+<br>
+
+<input
+type="text"
+id="search"
+placeholder="Search user..."
+onkeyup="searchUser()">
+
+<br><br>
+
+<table border="1" width="100%" cellpadding="10">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Balance</th>
+
+<th>Referral</th>
+
+<th>Investment</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody id="usersTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script src="../js/config.js"></script>
+
+<script src="../js/admin-users.js"></script>
+
+</body>
+
+</html>

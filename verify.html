@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GWANDU | Email Verification</title>
+
+    <link
+        rel="stylesheet"
+        href="css/verify.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="verify-container">
+
+        <div class="verify-card">
+
+            <div class="verify-icon">
+                <i class="fa-solid fa-envelope-circle-check"></i>
+            </div>
+
+            <div class="verify-brand">
+                <span>↗</span> GWANDU
+            </div>
+
+            <h1>Email Verification</h1>
+
+            <p class="subtitle">
+                Enter the 6-digit verification code
+                sent to your email address.
+            </p>
+
+            <form id="verifyForm">
+
+                <label for="otp">
+                    Verification Code
+                </label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    <input
+                        type="text"
+                        id="otp"
+                        maxlength="6"
+                        inputmode="numeric"
+                        autocomplete="one-time-code"
+                        placeholder="Enter 6-digit OTP"
+                        required
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    id="verifyBtn"
+                >
+                    Verify Email
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </form>
+
+            <button
+                type="button"
+                id="resendBtn"
+                class="resend-btn"
+            >
+                <i class="fa-solid fa-rotate"></i>
+                Resend Code
+            </button>
+
+            <p
+                id="message"
+                class="message"
+            ></p>
+
+            <div class="expiry">
+                <i class="fa-regular fa-clock"></i>
+                Your verification code expires in 5 minutes.
+            </div>
+
+            <a
+                href="login.html"
+                class="back-login"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Login
+            </a>
+
+        </div>
+
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/verify.js"></script>
+
+</body>
+
+</html>

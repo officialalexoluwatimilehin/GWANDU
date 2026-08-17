@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GWANDU — Withdraw Funds</title>
+
+    <link rel="stylesheet" href="css/withdraw.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="withdraw-container">
+
+    <header class="withdraw-header">
+
+        <div class="withdraw-brand">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>GWANDU</span>
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Dashboard
+        </a>
+
+    </header>
+
+
+    <div class="withdraw-title">
+
+        <div>
+            <h1>Withdraw Funds</h1>
+
+            <p>
+                Manage your available funds and request a withdrawal.
+            </p>
+        </div>
+
+        <div class="withdraw-icon">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+        </div>
+
+    </div>
+
+
+    <div class="balance-grid">
+
+        <div class="balance-box">
+
+            <h3>Main Balance</h3>
+
+            <h2 id="mainBalance">$0</h2>
+
+            <small>
+                Withdraw anytime.
+            </small>
+
+        </div>
+
+
+        <div class="balance-box">
+
+            <h3>Referral Balance</h3>
+
+            <h2 id="referralBalance">$0</h2>
+
+            <small>
+                Available immediately.
+            </small>
+
+        </div>
+
+
+        <div class="balance-box">
+
+            <h3>Investment Earnings</h3>
+
+            <h2 id="investmentBalance">$0</h2>
+
+            <small id="lockMessage">
+                Locked until investment matures.
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="withdraw-card">
+
+        <label for="withdrawType">
+            Withdrawal Method
+        </label>
+
+        <select id="withdrawType">
+
+            <option value="Balance">
+                Main Balance
+            </option>
+
+            <option value="Referral">
+                Referral Earnings
+            </option>
+
+            <option value="Profit">
+                Investment Profit
+            </option>
+
+        </select>
+
+
+        <label for="network">
+            Select Network
+        </label>
+
+        <select id="network">
+
+            <option value="TRC20">USDT (TRC20)</option>
+            <option value="ERC20">USDT (ERC20)</option>
+            <option value="BEP20">USDT (BEP20)</option>
+            <option value="BTC">Bitcoin</option>
+            <option value="SOL">Solana</option>
+            <option value="TON">TON</option>
+
+        </select>
+
+
+        <label for="wallet">
+            Wallet Address
+        </label>
+
+        <input
+            type="text"
+            id="wallet"
+            placeholder="Enter your wallet address"
+        >
+
+
+        <label for="amount">
+            Amount
+        </label>
+
+        <input
+            type="number"
+            id="amount"
+            placeholder="Enter withdrawal amount"
+            min="0"
+        >
+
+
+        <button id="withdrawBtn">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            Request Withdrawal
+        </button>
+
+
+        <p id="message"></p>
+
+    </div>
+
+</div>
+
+
+<script src="js/config.js"></script>
+<script src="js/auth-guard.js"></script>
+<script src="js/withdraw.js"></script>
+
+</body>
+</html>

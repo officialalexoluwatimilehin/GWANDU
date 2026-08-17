@@ -1,0 +1,399 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',Arial,sans-serif;
+    min-height:100vh;
+    background:#0B1220;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 20px;
+}
+
+.deposit-container{
+    width:100%;
+    max-width:560px;
+    background:#111827;
+    border:1px solid rgba(243,186,47,.18);
+    border-radius:22px;
+    padding:38px;
+    box-shadow:0 20px 55px rgba(0,0,0,.4);
+}
+
+.deposit-container h1{
+    color:#F3BA2F;
+    text-align:center;
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.deposit-container > p{
+    color:#aeb8ca;
+    text-align:center;
+    font-size:15px;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.deposit-container label{
+    display:block;
+    color:#fff;
+    font-size:14px;
+    font-weight:600;
+    margin-top:18px;
+    margin-bottom:8px;
+}
+
+.deposit-container input,
+.deposit-container select{
+    width:100%;
+    padding:14px 15px;
+    background:#18243d;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.3s ease;
+}
+
+.deposit-container input:focus,
+.deposit-container select:focus{
+    border-color:#F3BA2F;
+    box-shadow:0 0 0 3px rgba(243,186,47,.10);
+}
+
+.deposit-container select{
+    cursor:pointer;
+}
+
+.deposit-container input[readonly]{
+    color:#F3BA2F;
+    font-weight:600;
+    font-size:13px;
+    word-break:break-all;
+}
+
+/* Wallet section */
+
+#copyWallet{
+    width:100%;
+    margin-top:12px;
+    background:#1d4ed8;
+    color:#fff;
+    border:none;
+    padding:13px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    font-size:14px;
+    transition:.3s ease;
+}
+
+#copyWallet:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(37,99,235,.30);
+}
+
+/* Verify button */
+
+#verifyBtn{
+    width:100%;
+    margin-top:20px;
+    background:#F3BA2F;
+    color:#111827;
+    border:none;
+    padding:15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:700;
+    transition:.3s ease;
+}
+
+#verifyBtn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(243,186,47,.30);
+}
+
+/* Message */
+
+#message{
+    text-align:center;
+    margin-top:20px;
+    font-weight:600;
+    color:#F3BA2F;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    body{
+        padding:20px 15px;
+        align-items:flex-start;
+        padding-top:30px;
+    }
+
+    .deposit-container{
+        padding:25px 20px;
+        border-radius:18px;
+    }
+
+    .deposit-container h1{
+        font-size:27px;
+    }
+
+    .deposit-container > p{
+        font-size:14px;
+    }
+
+    .deposit-container input,
+    .deposit-container select{
+        padding:13px;
+    }
+
+}
+/* ======================================================
+   DEPOSIT HISTORY
+====================================================== */
+
+.history-container{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    padding:30px;
+}
+
+.history-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:45px;
+}
+
+.history-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#F3BA2F;
+    font-size:26px;
+    font-weight:800;
+}
+
+.history-brand i{
+    font-size:25px;
+}
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 18px;
+    background:#18243d;
+    color:#fff;
+    border:1px solid rgba(243,186,47,.25);
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s ease;
+}
+
+.back-btn:hover{
+    color:#F3BA2F;
+    border-color:#F3BA2F;
+    transform:translateY(-2px);
+}
+
+.history-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.history-title h1{
+    color:#F3BA2F;
+    font-size:36px;
+    margin-bottom:6px;
+}
+
+.history-title p{
+    color:#aeb8ca;
+}
+
+.history-icon{
+    width:60px;
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#18243d;
+    color:#F3BA2F;
+    border:1px solid rgba(243,186,47,.2);
+    border-radius:15px;
+    font-size:25px;
+}
+
+.history-card{
+    background:#111827;
+    border:1px solid rgba(243,186,47,.15);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 20px 55px rgba(0,0,0,.35);
+}
+
+.table-wrapper{
+    width:100%;
+    overflow-x:auto;
+}
+
+.transaction-table{
+    width:100%;
+    min-width:800px;
+    border-collapse:collapse;
+    background:#111827;
+    margin:0;
+}
+
+.transaction-table th{
+    background:#F3BA2F;
+    color:#111827;
+    padding:16px;
+    text-align:center;
+    font-size:14px;
+}
+
+.transaction-table td{
+    padding:16px;
+    text-align:center;
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    font-size:14px;
+}
+
+.transaction-table tbody tr{
+    transition:.25s ease;
+}
+
+.transaction-table tbody tr:hover{
+    background:#18243d;
+}
+
+.transaction-table td:nth-child(3){
+    max-width:240px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    color:#aeb8ca;
+}
+
+@media(max-width:768px){
+
+    body{
+        display:block;
+        padding:0;
+    }
+
+    .history-container{
+        padding:20px 15px;
+    }
+
+    .history-header{
+        margin-bottom:30px;
+    }
+
+    .history-brand{
+        font-size:21px;
+    }
+
+    .history-brand i{
+        font-size:20px;
+    }
+
+    .back-btn{
+        padding:9px 12px;
+        font-size:13px;
+    }
+
+    .history-title{
+        align-items:flex-start;
+    }
+
+    .history-title h1{
+        font-size:28px;
+    }
+
+    .history-title p{
+        font-size:13px;
+    }
+
+    .history-icon{
+        width:48px;
+        height:48px;
+        font-size:20px;
+    }
+
+    .history-card{
+        padding:10px;
+        border-radius:15px;
+    }
+
+}
+
+/* ======================================================
+   WITHDRAWAL HISTORY
+====================================================== */
+
+.withdraw-history .transaction-table td:nth-child(3){
+    max-width:240px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    color:#aeb8ca;
+}
+
+@media(max-width:768px){
+
+    .history-container{
+        width:100%;
+        padding:20px 15px;
+    }
+
+    .history-header{
+        gap:15px;
+    }
+
+    .history-brand{
+        font-size:21px;
+    }
+
+    .history-brand i{
+        font-size:20px;
+    }
+
+    .back-btn{
+        padding:9px 12px;
+        font-size:13px;
+    }
+
+    .history-title h1{
+        font-size:28px;
+    }
+
+    .history-title p{
+        font-size:13px;
+    }
+
+    .history-card{
+        padding:10px;
+        border-radius:15px;
+    }
+
+}

@@ -1,0 +1,45 @@
+.notification{
+
+position:fixed;
+
+top:20px;
+
+right:-400px;
+
+width:320px;
+
+background:#00b894;
+
+color:white;
+
+padding:20px;
+
+border-radius:10px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+
+font-family:Arial;
+
+transition:.5s;
+
+z-index:9999;
+
+}
+
+.notification.show{
+
+right:20px;
+
+}
+
+.notification h3{
+
+margin:0 0 10px;
+
+}
+
+.notification p{
+
+margin:0;
+
+}

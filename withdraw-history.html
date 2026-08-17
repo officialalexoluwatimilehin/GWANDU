@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>GWANDU — Withdrawal History</title>
+
+    <link rel="stylesheet" href="css/deposit.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="history-container">
+
+    <header class="history-header">
+
+        <div class="history-brand">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>GWANDU</span>
+
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Dashboard
+
+        </a>
+
+    </header>
+
+
+    <div class="history-title">
+
+        <div>
+
+            <h1>Withdrawal History</h1>
+
+            <p>View your previous withdrawal transactions.</p>
+
+        </div>
+
+        <div class="history-icon">
+
+            <i class="fa-solid fa-money-bill-transfer"></i>
+
+        </div>
+
+    </div>
+
+
+    <div class="history-card">
+
+        <div class="table-wrapper">
+
+            <table class="transaction-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Amount</th>
+
+                        <th>Network</th>
+
+                        <th>Wallet</th>
+
+                        <th>Status</th>
+
+                        <th>Date</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="historyTable">
+
+                    <tr>
+
+                        <td colspan="5">
+                            Loading withdrawal history...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="js/config.js"></script>
+
+<script src="js/withdraw-history.js"></script>
+
+
+</body>
+
+</html>

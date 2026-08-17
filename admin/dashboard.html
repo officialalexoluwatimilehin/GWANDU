@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GWANDU Admin Dashboard</title>
+
+<link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>GWANDU</h2>
+
+<a href="dashboard.html">🏠 Dashboard</a>
+<a href="admin-users.html">👤 Users</a>
+<a href="admin-deposits.html">💰 Deposits</a>
+<a href="admin-withdrawals.html">💸 Withdrawals</a>
+<a href="settings.html">⚙ Settings</a>
+<a href="login.html">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<h1>Admin Dashboard</h1>
+
+<div class="admin-info">
+
+👤 Administrator
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Users</h3>
+<h2 id="users">0</h2>
+</div>
+
+<div class="card">
+<h3>Total Deposits</h3>
+<h2 id="deposits">$0</h2>
+</div>
+
+<div class="card">
+<h3>Total Investments</h3>
+<h2 id="investments">$0</h2>
+</div>
+
+<div class="card">
+<h3>Website Balance</h3>
+<h2 id="balance">$0</h2>
+</div>
+
+</div>
+
+<div class="table-box">
+
+<h2>Recent Activity</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>User</th>
+<th>Action</th>
+<th>Amount</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="activityTable">
+
+<tr>
+
+<td colspan="4">
+
+No recent activity
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/admin-dashboard.js"></script>
+
+</body>
+
+</html>
