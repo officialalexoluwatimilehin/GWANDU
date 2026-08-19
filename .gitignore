@@ -2,27 +2,19 @@
 .env
 .env.*
 backend/.env
-backend_backup/.env
 
 # Dependencies
 node_modules/
 backend/node_modules/
 
-# Backups
-*.backup
-*.bak
-*.save
-*.backup-before-fix
-
 # Editor / OS files
 .vscode/
 .DS_Store
 Thumbs.db
-backend_backup/
 
-# Old project copies / backups
+# Backups
+*.backup
+*.backup-*
+*.bak
+*.save
 backend_backup/
-index_old.html
-
-# Backend route backups
-backend/routes/*.backup*

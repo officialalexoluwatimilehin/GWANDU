@@ -15,6 +15,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
+app.use(express.static(require("path").join(__dirname, "..")));
 
 app.use("/api", authRoutes);
 
