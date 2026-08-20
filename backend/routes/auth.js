@@ -78,7 +78,7 @@ router.post("/signup", async (req, res) => {
 
         await transporter.sendMail({
 
-            from: process.env.EMAIL_USER,
+            from: process.env.EMAIL_FROM,
 
             to: email,
 
@@ -157,7 +157,7 @@ await user.save();
 
 // Send OTP email
 await transporter.sendMail({
-    from: `"GWANDU Support" <${process.env.EMAIL_USER}>`,
+    from: process.env.EMAIL_FROM,
     to: user.email,
     subject: "Verify your GWANDU account",
     html: `
@@ -268,7 +268,7 @@ router.post("/forgot-password", async (req, res) => {
 
         await transporter.sendMail({
 
-            from: process.env.EMAIL_USER,
+            from: process.env.EMAIL_FROM,
 
             to: user.email,
 
@@ -465,7 +465,7 @@ router.post("/resend-otp", async (req, res) => {
         await user.save();
 
         await transporter.sendMail({
-            from: process.env.EMAIL_USER,
+            from: process.env.EMAIL_FROM,
             to: user.email,
             subject: "Verify your GWANDU Account",
             html: `
