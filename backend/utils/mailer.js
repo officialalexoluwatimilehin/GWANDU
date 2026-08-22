@@ -1,31 +1,24 @@
-const brevo = require("@getbrevo/brevo");
+const { BrevoClient } = require("@getbrevo/brevo");
 
-const apiInstance = new brevo.TransactionalEmailsApi();
-
-apiInstance.setApiKey(
-    brevo.TransactionalEmailsApiApiKeys.apiKey,
-    process.env.BREVO_API_KEY
-);
+const brevo = new BrevoClient({
+    apiKey: process.env.BREVO_API_KEY
+});
 
 async function sendMail({ from, to, subject, html }) {
-    const sendSmtpEmail = new brevo.SendSmtpEmail();
-
-    sendSmtpEmail.sender = {
-        name: "GWANDU",
-        email: "officialgwandusupport@gmail.com"
-    };
-
-    sendSmtpEmail.to = [
-        {
-            email: to
-        }
-    ];
-
-    sendSmtpEmail.subject = subject;
-    sendSmtpEmail.htmlContent = html;
-
     try {
-        const result = await apiInstance.sendTransacEmail(sendSmtpEmail);
+        const result = await brevo.transactionalEmails.sendTransacEmail({
+            sender: {
+                name: "GWANDU",
+                email: "officialgwandusupport@gmail.com"
+            },
+            to: [
+                {
+                    email: to
+                }
+            ],
+            subject,
+            htmlContent: html
+        });
 
         console.log("Brevo email sent successfully:", result);
 
@@ -33,10 +26,12 @@ async function sendMail({ from, to, subject, html }) {
     } catch (error) {
         console.error(
             "Brevo email error:",
-            error.response?.body || error.message || error
+            error?.body || error?.message || error
         );
 
-        throw new Error("Email sending failed");
+        throw new Error(
+            error?.message || "Email sending failed"
+        );
     }
 }
 
