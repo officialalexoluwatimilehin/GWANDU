@@ -28,7 +28,11 @@ router.post("/signup", async (req, res) => {
     referralCode: referredByCode
 } = req.body;
 
-        console.log(req.body);
+        console.log("Signup request:", {
+    username,
+    email,
+    referralCode: referredByCode
+});
 
         if (!username || !email || !password) {
 
