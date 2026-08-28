@@ -1,40 +1,28 @@
-const { BrevoClient } = require("@getbrevo/brevo");
+const nodemailer = require("nodemailer");
 
-const brevo = new BrevoClient({
-    apiKey: process.env.BREVO_API_KEY
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_APP_PASSWORD
+    }
 });
 
-async function sendMail({ from, to, subject, html }) {
+async function sendEmail(to, subject, text) {
     try {
-        const result = await brevo.transactionalEmails.sendTransacEmail({
-            sender: {
-                name: "GWANDU",
-                email: "officialgwandusupport@gmail.com"
-            },
-            to: [
-                {
-                    email: to
-                }
-            ],
+        const info = await transporter.sendMail({
+            from: `"GWANDU" <${process.env.EMAIL_USER}>`,
+            to,
             subject,
-            htmlContent: html
+            text
         });
 
-        console.log("Brevo email sent successfully:", result);
-
-        return result;
+        console.log("✅ Email sent successfully:", info.messageId);
+        return info;
     } catch (error) {
-        console.error(
-            "Brevo email error:",
-            error?.body || error?.message || error
-        );
-
-        throw new Error(
-            error?.message || "Email sending failed"
-        );
+        console.error("❌ Email sending failed:", error.message);
+        throw error;
     }
 }
 
-module.exports = {
-    sendMail
-};
+module.exports = { sendEmail };
