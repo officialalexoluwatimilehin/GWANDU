@@ -1,8 +1,14 @@
+const API_URL =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+        ? "http://localhost:3000/api"
+        : "/api";
+
 async function loadStats(){
 
 try{
 
-const response = await fetch("http://localhost:5000/stats");
+const response = await fetch(`${API_URL}/stats`);
 
 const data = await response.json();
 

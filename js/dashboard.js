@@ -395,7 +395,7 @@ if (copyReferral) {
 
         const code = document.getElementById("referralCode").innerText;
 
-        const link = "http://localhost:5500/register.html?ref=" + code;
+        const link = `${window.location.origin}/register.html?ref=${code}`;
 
         navigator.clipboard.writeText(link);
 
