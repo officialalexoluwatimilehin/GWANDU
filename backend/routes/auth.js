@@ -7,11 +7,10 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
 
-const transporter = require("../utils/mailer");
+const { sendMail } = require("../utils/mailer");
 
 const auth = require("../middleware/auth");
 
-const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 // =========================
 // REGISTER
@@ -80,7 +79,7 @@ router.post("/signup", async (req, res) => {
 });
         await user.save();
 
-        await transporter.sendMail({
+        await sendMail({
 
             from: process.env.EMAIL_FROM,
 
@@ -160,7 +159,7 @@ user.otpExpires = Date.now() + 5 * 60 * 1000; // 5 minutes
 await user.save();
 
 // Send OTP email
-await transporter.sendMail({
+await sendMail({
     from: process.env.EMAIL_FROM,
     to: user.email,
     subject: "Verify your GWANDU account",
@@ -270,7 +269,7 @@ router.post("/forgot-password", async (req, res) => {
         const resetLink =
 `http://localhost:5500/reset-password.html?token=${token}`;
 
-        await transporter.sendMail({
+        await sendMail({
 
             from: process.env.EMAIL_FROM,
 
@@ -468,7 +467,7 @@ router.post("/resend-otp", async (req, res) => {
 
         await user.save();
 
-        await transporter.sendMail({
+        await sendMail({
             from: process.env.EMAIL_FROM,
             to: user.email,
             subject: "Verify your GWANDU Account",

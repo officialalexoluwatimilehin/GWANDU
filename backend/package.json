@@ -18,7 +18,7 @@
     "mongoose": "^9.7.4",
     "node-cron": "^4.6.0",
     "nodemailer": "^9.0.6",
-    "resend": "^6.20.0",
+    "resend": "^6.25.0",
     "telegraf": "^4.16.3",
     "uuid": "^11.0.3",
     "web3": "^4.13.0"
