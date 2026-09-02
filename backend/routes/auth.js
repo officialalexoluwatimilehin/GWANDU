@@ -1312,7 +1312,7 @@ router.post("/admin/approve/:userId/:transactionId", adminAuth, async (req, res)
 
         }
 
-        if (tx.status === "Completed") {
+        if (tx.status === "Completed" || tx.status === "Approved") {
 
             return res.json({
                 message: "Already approved"
@@ -1320,7 +1320,34 @@ router.post("/admin/approve/:userId/:transactionId", adminAuth, async (req, res)
 
         }
 
+        /*
+         * Blockchain verification is required before approval
+         * for every supported cryptocurrency network.
+         */
+        const blockchainNetworks = [
+            "BTC",
+            "ERC20",
+            "BEP20",
+            "TRC20",
+            "SOL",
+            "TON",
+            "ARBITRUM"
+        ];
+
+        if (
+            blockchainNetworks.includes(tx.network) &&
+            tx.verificationStatus !== "Verified"
+        ) {
+
+            return res.status(400).json({
+                error:
+                    "This deposit has not passed blockchain verification"
+            });
+
+        }
+
         tx.status = "Approved";
+        tx.approved = true;
 
         user.balance += Number(tx.amount);
 
@@ -1451,81 +1478,275 @@ router.post("/verify-deposit", async (req, res) => {
 
     try {
 
-        const authHeader = req.headers.authorization;
+        const authHeader =
+            req.headers.authorization;
 
         if (!authHeader) {
-
             return res.status(401).json({
                 error: "No token"
             });
-
         }
 
-        const token = authHeader.split(" ")[1];
+        const token =
+            authHeader.split(" ")[1];
 
-        const decoded = jwt.verify(
-            token,
-            process.env.JWT_SECRET
-        );
+        const decoded =
+            jwt.verify(
+                token,
+                process.env.JWT_SECRET
+            );
 
-        const user = await User.findById(decoded.id);
+        const user =
+            await User.findById(decoded.id);
 
         if (!user) {
-
             return res.status(404).json({
                 error: "User not found"
             });
-
         }
 
         const {
-
             amount,
             network,
             txHash
-
         } = req.body;
 
+        const requestedUsd =
+            Number(amount);
+
+        const cleanTxHash =
+            String(txHash || "").trim();
+
+        if (
+            !requestedUsd ||
+            requestedUsd <= 0
+        ) {
+            return res.status(400).json({
+                error: "Invalid investment amount"
+            });
+        }
+
+        if (
+            !network ||
+            !cleanTxHash
+        ) {
+            return res.status(400).json({
+                error:
+                    "Network and transaction hash are required"
+            });
+        }
+
+        const supportedNetworks = [
+            "BTC",
+            "ERC20",
+            "BEP20",
+            "TRC20",
+            "SOL",
+            "TON",
+            "ARBITRUM"
+        ];
+
+        if (
+            !supportedNetworks.includes(network)
+        ) {
+            return res.status(400).json({
+                error: "Unsupported deposit network"
+            });
+        }
+
+        /*
+         * Prevent TX reuse across the entire database.
+         */
+        const duplicateTx =
+            await User.findOne({
+                "transactions.txHash":
+                    cleanTxHash
+            });
+
+        if (duplicateTx) {
+            return res.status(400).json({
+                error:
+                    "This transaction has already been submitted"
+            });
+        }
+
+        /*
+         * Backend-controlled destination wallets.
+         * Frontend wallet display remains hardcoded/read-only,
+         * but verification NEVER trusts the frontend wallet.
+         */
+        const wallets = {
+
+            ERC20:
+                process.env.USDT_ERC20,
+
+            BEP20:
+                process.env.USDT_BEP20,
+
+            TRC20:
+                process.env.USDT_TRC20,
+
+            BTC:
+                process.env.BTC_WALLET,
+
+            SOL:
+                process.env.SOL_WALLET,
+
+            TON:
+                process.env.TON_WALLET,
+
+            ARBITRUM:
+                process.env.ARBITRUM_WALLET
+
+        };
+
+        const destinationWallet =
+            wallets[network];
+
+        if (!destinationWallet) {
+            return res.status(500).json({
+                error:
+                    "Deposit wallet is not configured on the server"
+            });
+        }
+
+        const {
+            verifyDeposit
+        } =
+            require("../utils/depositVerifier");
+
+        /*
+         * REAL BLOCKCHAIN VERIFICATION
+         */
+        const verification =
+            await verifyDeposit({
+
+                network,
+
+                txHash:
+                    cleanTxHash,
+
+                destinationWallet,
+
+                requestedUsd
+
+            });
+
+        if (!verification.verified) {
+
+            return res.status(400).json({
+                error:
+                    "Blockchain verification failed"
+            });
+        }
+
+        /*
+         * Blockchain passed.
+         *
+         * Keep status Pending because the existing
+         * 5-minute waiting page and admin approval flow
+         * remain in place.
+         */
         user.transactions.push({
 
-            type: "Deposit",
+            type:
+                "Deposit",
 
-            amount,
+            amount:
+                requestedUsd,
 
             network,
 
-            txHash,
+            wallet:
+                destinationWallet,
 
-            status: "Pending",
+            txHash:
+                cleanTxHash,
 
-            date: new Date()
+            status:
+                "Pending",
+
+            approved:
+                false,
+
+            verificationStatus:
+                "Verified",
+
+            requestedUsd,
+
+            btcUsdRate:
+                network === "BTC"
+                    ? verification.priceUsd
+                    : 0,
+
+            requiredCryptoAmount:
+                verification.requiredCryptoAmount,
+
+            receivedCryptoAmount:
+                verification.cryptoAmount,
+
+            receivedUsdValue:
+                verification.usdValue,
+
+            destinationWallet,
+
+            confirmations:
+                verification.confirmations,
+
+            verifiedAt:
+                new Date(),
+
+            date:
+                new Date()
 
         });
 
         await user.save();
 
-        res.json({
+        return res.json({
 
-            message: "Deposit submitted successfully"
+            message:
+                "Payment verified successfully. Your deposit is now pending admin approval.",
+
+            verificationStatus:
+                "Verified",
+
+            network,
+
+            asset:
+                verification.asset,
+
+            receivedCryptoAmount:
+                verification.cryptoAmount,
+
+            requiredCryptoAmount:
+                verification.requiredCryptoAmount,
+
+            receivedUsdValue:
+                verification.usdValue,
+
+            confirmations:
+                verification.confirmations
 
         });
 
     }
+    catch (err) {
 
-    catch(err){
+        console.error(
+            "DEPOSIT VERIFICATION ERROR:",
+            err
+        );
 
-        console.error(err);
-
-        res.status(500).json({
-
-            error:"Server error"
-
+        return res.status(400).json({
+            error:
+                err.message ||
+                "Blockchain verification failed"
         });
 
     }
 
 });
-
 // =========================
 // USER WITHDRAW
 // =========================

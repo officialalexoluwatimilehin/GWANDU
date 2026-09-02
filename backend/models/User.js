@@ -42,6 +42,51 @@ const transactionSchema = new mongoose.Schema({
         default: false
     },
 
+    verificationStatus: {
+        type: String,
+        default: "Pending"
+    },
+
+    requestedUsd: {
+        type: Number,
+        default: 0
+    },
+
+    btcUsdRate: {
+        type: Number,
+        default: 0
+    },
+
+    requiredCryptoAmount: {
+        type: Number,
+        default: 0
+    },
+
+    receivedCryptoAmount: {
+        type: Number,
+        default: 0
+    },
+
+    receivedUsdValue: {
+        type: Number,
+        default: 0
+    },
+
+    destinationWallet: {
+        type: String,
+        default: ""
+    },
+
+    confirmations: {
+        type: Number,
+        default: 0
+    },
+
+    verifiedAt: {
+        type: Date,
+        default: null
+    },
+
     date: {
         type: Date,
         default: Date.now
