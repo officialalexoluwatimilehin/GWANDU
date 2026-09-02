@@ -26,7 +26,24 @@ el.value=data[key];
 
 }
 
-document.getElementById("saveBtn").addEventListener("click",async()=>{
+// Create Save Settings button automatically if it does not exist
+let saveBtn = document.getElementById("saveBtn");
+
+if (!saveBtn) {
+    saveBtn = document.createElement("button");
+    saveBtn.id = "saveBtn";
+    saveBtn.type = "button";
+    saveBtn.textContent = "Save Settings";
+
+    saveBtn.style.marginTop = "20px";
+    saveBtn.style.padding = "12px 24px";
+    saveBtn.style.cursor = "pointer";
+    saveBtn.style.fontSize = "16px";
+
+    document.body.appendChild(saveBtn);
+}
+
+saveBtn.addEventListener("click",async()=>{
 
 const body={
 
