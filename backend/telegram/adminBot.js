@@ -1,10 +1,20 @@
 const { Telegraf, Markup } = require("telegraf");
+const https = require("https");
+
+const telegramAgent = new https.Agent({
+    family: 4,
+    keepAlive: true
+});
 require("dotenv").config();
 
 const connectDB = require("../config/database");
 const User = require("../models/User");
 
-const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
+const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN, {
+    telegram: {
+        agent: telegramAgent
+    }
+});
 
 const ADMIN_ID = String(process.env.TELEGRAM_ADMIN_ID);
 
@@ -136,17 +146,17 @@ bot.action("dashboard", async (ctx) => {
 
     } catch (err) {
 
-    console.error("Dashboard error:", err);
-
-    // Telegram throws this when Refresh produces
+    // Telegram returns 400 when Refresh produces
     // exactly the same message as before.
     if (
         err?.response?.error_code === 400 &&
         err?.response?.description?.includes("message is not modified")
     ) {
+        console.log("ℹ️ Dashboard already up to date.");
         return;
     }
 
+    console.error("Dashboard error:", err);
     await ctx.reply("❌ Could not load users.");
 
 }
@@ -312,18 +322,30 @@ async function startBot() {
 
 }
 
-startBot();
+async function startAdminBot() {
+    await startBot();
+}
+
+module.exports = {
+    startAdminBot
+};
 
 // =========================
 // SHUTDOWN
 // =========================
 
-process.once(
-    "SIGINT",
-    () => bot.stop("SIGINT")
-);
+process.once("SIGINT", () => {
+    try {
+        bot.stop("SIGINT");
+    } catch (err) {
+        console.log("Telegram bot was not running.");
+    }
+});
 
-process.once(
-    "SIGTERM",
-    () => bot.stop("SIGTERM")
-);
+process.once("SIGTERM", () => {
+    try {
+        bot.stop("SIGTERM");
+    } catch (err) {
+        console.log("Telegram bot was not running.");
+    }
+});

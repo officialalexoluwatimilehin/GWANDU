@@ -3,6 +3,8 @@ const User = require("./models/User");
 
 require("dotenv").config({ path: require("path").join(__dirname, ".env") });
 
+const { startAdminBot } = require("./telegram/adminBot");
+
 const express = require("express");
 const cors = require("cors");
 
@@ -193,6 +195,15 @@ investment.availableProfit += profit;
     app.listen(PORT, () => {
 
         console.log(`🚀 Server running on port ${PORT}`);
+
+        startAdminBot().catch(err => {
+
+            console.error(
+                "❌ Admin Telegram bot failed to start:",
+                err
+            );
+
+        });
 
     });
 

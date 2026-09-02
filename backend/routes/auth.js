@@ -13,6 +13,16 @@ const { sendMail } = require("../utils/mailer");
 const auth = require("../middleware/auth");
 
 const crypto = require("crypto");
+
+const {
+    notifyNewUser,
+    notifyDepositVerified,
+    notifyDepositApproved,
+    notifyDepositRejected,
+    notifyWithdrawalRequested,
+    notifyWithdrawalApproved,
+    notifyWithdrawalRejected
+} = require("../telegram/telegramNotify");
 // =========================
 // REGISTER
 // =========================
@@ -79,6 +89,8 @@ router.post("/signup", async (req, res) => {
     referredBy: referredByCode || null
 });
         await user.save();
+
+        await notifyNewUser(user);
 
         await sendMail({
 
@@ -1353,6 +1365,11 @@ router.post("/admin/approve/:userId/:transactionId", adminAuth, async (req, res)
 
         await user.save();
 
+        await notifyDepositApproved(
+            user,
+            tx
+        );
+
         res.json({
 
             message: "Deposit approved successfully"
@@ -1404,6 +1421,11 @@ router.post("/admin/reject/:userId/:transactionId", adminAuth, async (req, res) 
         tx.status = "Rejected";
 
         await user.save();
+
+        await notifyDepositRejected(
+            user,
+            tx
+        );
 
         res.json({
 
@@ -1701,7 +1723,15 @@ router.post("/verify-deposit", async (req, res) => {
 
         });
 
+        const verifiedTransaction =
+            user.transactions[user.transactions.length - 1];
+
         await user.save();
+
+        await notifyDepositVerified(
+            user,
+            verifiedTransaction
+        );
 
         return res.json({
 
@@ -1877,7 +1907,15 @@ router.post("/withdraw", auth, async (req, res) => {
             Number(user.pendingWithdrawal || 0) +
             withdrawalAmount;
 
+        const withdrawalTransaction =
+            user.transactions[user.transactions.length - 1];
+
         await user.save();
+
+        await notifyWithdrawalRequested(
+            user,
+            withdrawalTransaction
+        );
 
         res.json({
             message: "Withdrawal request submitted."
@@ -2130,6 +2168,11 @@ router.post("/admin/approve-withdrawal/:userId/:transactionId", adminAuth, async
 
         await user.save();
 
+        await notifyWithdrawalApproved(
+            user,
+            tx
+        );
+
         res.json({
             message: "Withdrawal approved."
         });
@@ -2240,6 +2283,11 @@ router.post("/admin/reject-withdrawal/:userId/:transactionId", adminAuth, async 
         );
 
         await user.save();
+
+        await notifyWithdrawalRejected(
+            user,
+            tx
+        );
 
         res.json({
             message: "Withdrawal rejected and funds refunded."
