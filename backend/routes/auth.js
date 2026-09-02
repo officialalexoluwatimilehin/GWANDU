@@ -90,8 +90,6 @@ router.post("/signup", async (req, res) => {
 });
         await user.save();
 
-        await notifyNewUser(user);
-
         await sendMail({
 
             from: process.env.EMAIL_FROM,
@@ -422,6 +420,8 @@ router.post("/verify-otp", async (req, res) => {
         user.otpExpires = null;
 
         await user.save();
+
+        await notifyNewUser(user);
 
         const token = jwt.sign(
 
