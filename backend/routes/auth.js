@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
+const Settings = require("../models/Settings");
 
 const { sendMail } = require("../utils/mailer");
 
@@ -2136,6 +2137,97 @@ res.json(deposits);
     }
 
 });
+
+
+// =========================
+// ADMIN SETTINGS
+// =========================
+
+router.get("/admin/settings", adminAuth, async (req, res) => {
+
+    try {
+
+        let settings = await Settings.findOne();
+
+        if (!settings) {
+            settings = await Settings.create({});
+        }
+
+        res.json(settings);
+
+    } catch (err) {
+
+        console.error("GET SETTINGS ERROR:", err);
+
+        res.status(500).json({
+            error: "Server error"
+        });
+
+    }
+
+});
+
+
+// =========================
+// UPDATE ADMIN SETTINGS
+// =========================
+
+router.post("/admin/settings", adminAuth, async (req, res) => {
+
+    try {
+
+        let settings = await Settings.findOne();
+
+        if (!settings) {
+            settings = await Settings.create({});
+        }
+
+        const allowedFields = [
+            "companyName",
+            "heroTitle",
+            "heroSubtitle",
+            "supportEmail",
+            "supportPhone",
+            "whatsapp",
+            "btcWallet",
+            "usdtTrc20",
+            "usdtBep20",
+            "usdtErc20",
+            "solWallet",
+            "tonWallet",
+            "bankName",
+            "bankAccountName",
+            "bankAccountNumber"
+        ];
+
+        for (const field of allowedFields) {
+
+            if (Object.prototype.hasOwnProperty.call(req.body, field)) {
+                settings[field] = req.body[field];
+            }
+
+        }
+
+        await settings.save();
+
+        console.log("✅ Admin settings updated");
+
+        res.json({
+            message: "Settings updated successfully."
+        });
+
+    } catch (err) {
+
+        console.error("UPDATE SETTINGS ERROR:", err);
+
+        res.status(500).json({
+            error: "Server error"
+        });
+
+    }
+
+});
+
 
 module.exports = router;
 
