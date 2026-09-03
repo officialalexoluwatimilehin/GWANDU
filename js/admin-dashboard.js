@@ -2,7 +2,7 @@ const token = localStorage.getItem("adminToken");
 
 if (!token) {
 
-    location.href = "admin-login.html";
+    location.href = "login.html";
 
 }
 
